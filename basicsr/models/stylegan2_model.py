@@ -1,4 +1,3 @@
-import importlib
 import math
 import mmcv
 import random
@@ -7,14 +6,15 @@ from collections import OrderedDict
 from copy import deepcopy
 from os import path as osp
 
+from basicsr.models import MODELS
 from basicsr.models import networks as networks
 from basicsr.models.base_model import BaseModel
+from basicsr.models.losses import LOSSES
 from basicsr.models.losses.losses import g_path_regularize, r1_penalty
 from basicsr.utils import tensor2img
 
-loss_module = importlib.import_module('basicsr.models.losses')
 
-
+@MODELS.register_module()
 class StyleGAN2Model(BaseModel):
     """StyleGAN2 model."""
 
@@ -73,7 +73,7 @@ class StyleGAN2Model(BaseModel):
 
         # define losses
         # gan loss (wgan)
-        cri_gan_cls = getattr(loss_module, train_opt['gan_opt'].pop('type'))
+        cri_gan_cls = LOSSES.get(train_opt['gan_opt'].pop('type'))
         self.cri_gan = cri_gan_cls(**train_opt['gan_opt']).to(self.device)
         # regularization weights
         self.r1_reg_weight = train_opt['r1_reg_weight']  # for discriminator

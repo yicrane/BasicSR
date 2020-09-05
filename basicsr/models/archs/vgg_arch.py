@@ -3,6 +3,8 @@ from collections import OrderedDict
 from torch import nn as nn
 from torchvision.models import vgg as vgg
 
+from basicsr.models.archs import ARCHS
+
 NAMES = {
     'vgg11': [
         'conv1_1', 'relu1_1', 'pool1', 'conv2_1', 'relu2_1', 'pool2',
@@ -54,6 +56,7 @@ def insert_bn(names):
     return names_bn
 
 
+@ARCHS.register_module()
 class VGGFeatureExtractor(nn.Module):
     """VGG network for feature extraction.
 

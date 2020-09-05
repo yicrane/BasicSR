@@ -5,14 +5,16 @@ from collections import OrderedDict
 from copy import deepcopy
 from os import path as osp
 
+from basicsr.models import MODELS
 from basicsr.models import networks as networks
 from basicsr.models.base_model import BaseModel
+from basicsr.models.losses import LOSSES
 from basicsr.utils import ProgressBar, get_root_logger, tensor2img
 
-loss_module = importlib.import_module('basicsr.models.losses')
 metric_module = importlib.import_module('basicsr.metrics')
 
 
+@MODELS.register_module()
 class SRModel(BaseModel):
     """Base SR model for single image super-resolution."""
 
@@ -39,16 +41,15 @@ class SRModel(BaseModel):
 
         # define losses
         if train_opt.get('pixel_opt'):
-            pixel_type = train_opt['pixel_opt'].pop('type')
-            cri_pix_cls = getattr(loss_module, pixel_type)
+            cri_pix_cls = LOSSES.get(train_opt['pixel_opt'].pop('type'))
             self.cri_pix = cri_pix_cls(**train_opt['pixel_opt']).to(
                 self.device)
         else:
             self.cri_pix = None
 
         if train_opt.get('perceptual_opt'):
-            percep_type = train_opt['perceptual_opt'].pop('type')
-            cri_perceptual_cls = getattr(loss_module, percep_type)
+            cri_perceptual_cls = LOSSES.get(
+                train_opt['perceptual_opt'].pop('type'))
             self.cri_perceptual = cri_perceptual_cls(
                 **train_opt['perceptual_opt']).to(self.device)
         else:

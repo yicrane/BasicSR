@@ -3,6 +3,7 @@ import torch
 from torch import nn as nn
 from torch.nn import functional as F
 
+from basicsr.models.archs import ARCHS
 from basicsr.models.archs.arch_util import flow_warp
 
 
@@ -49,6 +50,7 @@ class BasicModule(nn.Module):
         return self.basic_module(tensor_input)
 
 
+@ARCHS.register_module()
 class SpyNet(nn.Module):
     """SpyNet architecture.
 

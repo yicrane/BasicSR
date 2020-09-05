@@ -1,10 +1,12 @@
 import torch
 from torch import nn as nn
 
+from basicsr.models.archs import ARCHS
 from basicsr.models.archs.arch_util import (ResidualBlockNoBN, Upsample,
                                             make_layer)
 
 
+@ARCHS.register_module()
 class EDSR(nn.Module):
     """EDSR network structure.
 

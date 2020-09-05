@@ -5,10 +5,12 @@ import torch
 from pathlib import Path
 from torch.utils import data as data
 
+from basicsr.data import DATASETS
 from basicsr.data.transforms import augment, paired_random_crop, totensor
 from basicsr.utils import FileClient, get_root_logger
 
 
+@DATASETS.register_module()
 class Vimeo90KDataset(data.Dataset):
     """Vimeo90K dataset for training.
 

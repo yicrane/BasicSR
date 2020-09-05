@@ -2,6 +2,7 @@ import torch
 from torch import nn as nn
 from torch.nn import functional as F
 
+from basicsr.models.archs import ARCHS
 from basicsr.models.archs.arch_util import default_init_weights, make_layer
 
 
@@ -65,6 +66,7 @@ class RRDB(nn.Module):
         return out * 0.2 + x
 
 
+@ARCHS.register_module()
 class RRDBNet(nn.Module):
     """Networks consisting of Residual in Residual Dense Block, which is used
     in ESRGAN.

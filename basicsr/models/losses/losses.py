@@ -5,6 +5,7 @@ from torch import nn as nn
 from torch.nn import functional as F
 
 from basicsr.models.archs.vgg_arch import VGGFeatureExtractor
+from basicsr.models.losses import LOSSES
 from basicsr.models.losses.loss_utils import weighted_loss
 
 _reduction_modes = ['none', 'mean', 'sum']
@@ -25,6 +26,7 @@ def charbonnier_loss(pred, target, eps=1e-12):
     return torch.sqrt((pred - target)**2 + eps)
 
 
+@LOSSES.register_module()
 class L1Loss(nn.Module):
     """L1 (mean absolute error, MAE) loss.
 
@@ -55,6 +57,7 @@ class L1Loss(nn.Module):
             pred, target, weight, reduction=self.reduction)
 
 
+@LOSSES.register_module()
 class MSELoss(nn.Module):
     """MSE (L2) loss.
 
@@ -85,6 +88,7 @@ class MSELoss(nn.Module):
             pred, target, weight, reduction=self.reduction)
 
 
+@LOSSES.register_module()
 class CharbonnierLoss(nn.Module):
     """Charbonnier loss (one variant of Robust L1Loss, a differentiable
     variant of L1Loss).
@@ -122,6 +126,7 @@ class CharbonnierLoss(nn.Module):
             pred, target, weight, eps=self.eps, reduction=self.reduction)
 
 
+@LOSSES.register_module()
 class WeightedTVLoss(L1Loss):
     """Weighted TV loss.
 
@@ -143,6 +148,7 @@ class WeightedTVLoss(L1Loss):
         return loss
 
 
+@LOSSES.register_module()
 class PerceptualLoss(nn.Module):
     """Perceptual loss with commonly used style loss.
 
@@ -267,6 +273,7 @@ class PerceptualLoss(nn.Module):
         return gram
 
 
+@LOSSES.register_module()
 class GANLoss(nn.Module):
     """Define GAN loss.
 

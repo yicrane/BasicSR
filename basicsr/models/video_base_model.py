@@ -7,12 +7,14 @@ from mmcv.runner import get_dist_info
 from os import path as osp
 from torch import distributed as dist
 
+from basicsr.models import MODELS
 from basicsr.models.sr_model import SRModel
 from basicsr.utils import ProgressBar, get_root_logger, tensor2img
 
 metric_module = importlib.import_module('basicsr.metrics')
 
 
+@MODELS.register_module()
 class VideoBaseModel(SRModel):
     """Base video SR model."""
 

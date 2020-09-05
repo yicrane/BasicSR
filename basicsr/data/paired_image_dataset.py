@@ -2,6 +2,7 @@ import mmcv
 import numpy as np
 from torch.utils import data as data
 
+from basicsr.data import DATASETS
 from basicsr.data.transforms import augment, paired_random_crop, totensor
 from basicsr.data.util import (paired_paths_from_folder,
                                paired_paths_from_lmdb,
@@ -9,6 +10,7 @@ from basicsr.data.util import (paired_paths_from_folder,
 from basicsr.utils import FileClient
 
 
+@DATASETS.register_module()
 class PairedImageDataset(data.Dataset):
     """Paired image dataset for image restoration.
 

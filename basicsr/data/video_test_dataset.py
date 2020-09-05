@@ -4,11 +4,13 @@ import torch
 from os import path as osp
 from torch.utils import data as data
 
+from basicsr.data import DATASETS
 from basicsr.data import util as util
 from basicsr.data.util import duf_downsample
 from basicsr.utils import get_root_logger
 
 
+@DATASETS.register_module()
 class VideoTestDataset(data.Dataset):
     """Video test dataset.
 
@@ -154,6 +156,7 @@ class VideoTestDataset(data.Dataset):
         return len(self.data_info['gt_path'])
 
 
+@DATASETS.register_module()
 class VideoTestVimeo90KDataset(data.Dataset):
     """Video test dataset for Vimeo90k-Test dataset.
 
@@ -235,6 +238,7 @@ class VideoTestVimeo90KDataset(data.Dataset):
         return len(self.data_info['gt_path'])
 
 
+@DATASETS.register_module()
 class VideoTestDUFDataset(VideoTestDataset):
     """ Video test dataset for DUF dataset.
 
@@ -297,6 +301,7 @@ class VideoTestDUFDataset(VideoTestDataset):
         }
 
 
+@DATASETS.register_module()
 class VideoRecurrentTestDataset(VideoTestDataset):
     """Video test dataset for recurrent architectures, which takes LR video
     frames as input and output corresponding HR video frames.

@@ -4,10 +4,12 @@ from os import path as osp
 from torch.utils import data as data
 from torchvision.transforms.functional import normalize
 
+from basicsr.data import DATASETS
 from basicsr.data.transforms import totensor
 from basicsr.utils import FileClient
 
 
+@DATASETS.register_module()
 class SingleImageDataset(data.Dataset):
     """Read only lq images in the test phase.
 

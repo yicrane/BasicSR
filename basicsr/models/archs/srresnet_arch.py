@@ -1,9 +1,11 @@
 from torch import nn as nn
 from torch.nn import functional as F
 
+from basicsr.models.archs import ARCHS
 from basicsr.models.archs import arch_util as arch_util
 
 
+@ARCHS.register_module()
 class MSRResNet(nn.Module):
     """Modified SRResNet.
 

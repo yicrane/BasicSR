@@ -4,10 +4,12 @@ from os import path as osp
 from torch.utils import data as data
 from torchvision.transforms.functional import normalize
 
+from basicsr.data import DATASETS
 from basicsr.data.transforms import augment, totensor
 from basicsr.utils import FileClient
 
 
+@DATASETS.register_module()
 class FFHQDataset(data.Dataset):
     """FFHQ dataset for StyleGAN.
 

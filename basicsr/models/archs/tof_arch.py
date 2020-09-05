@@ -2,6 +2,7 @@ import torch
 from torch import nn as nn
 from torch.nn import functional as F
 
+from basicsr.models.archs import ARCHS
 from basicsr.models.archs.arch_util import flow_warp
 
 
@@ -133,6 +134,7 @@ class SPyNetTOF(nn.Module):
         return flow
 
 
+@ARCHS.register_module()
 class TOFlow(nn.Module):
     """PyTorch implementation of TOFlow.
 

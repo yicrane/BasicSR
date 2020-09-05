@@ -1,14 +1,14 @@
-import importlib
 import torch
 from collections import OrderedDict
 from copy import deepcopy
 
+from basicsr.models import MODELS
 from basicsr.models import networks as networks
+from basicsr.models.losses import LOSSES
 from basicsr.models.sr_model import SRModel
 
-loss_module = importlib.import_module('basicsr.models.losses')
 
-
+@MODELS.register_module()
 class SRGANModel(SRModel):
     """SRGAN model for single image super-resolution."""
 
@@ -31,24 +31,22 @@ class SRGANModel(SRModel):
 
         # define losses
         if train_opt.get('pixel_opt'):
-            pixel_type = train_opt['pixel_opt'].pop('type')
-            cri_pix_cls = getattr(loss_module, pixel_type)
+            cri_pix_cls = LOSSES.get(train_opt['pixel_opt'].pop('type'))
             self.cri_pix = cri_pix_cls(**train_opt['pixel_opt']).to(
                 self.device)
         else:
             self.cri_pix = None
 
         if train_opt.get('perceptual_opt'):
-            percep_type = train_opt['perceptual_opt'].pop('type')
-            cri_perceptual_cls = getattr(loss_module, percep_type)
+            cri_perceptual_cls = LOSSES.get(
+                train_opt['perceptual_opt'].pop('type'))
             self.cri_perceptual = cri_perceptual_cls(
                 **train_opt['perceptual_opt']).to(self.device)
         else:
             self.cri_perceptual = None
 
         if train_opt.get('gan_opt'):
-            gan_type = train_opt['gan_opt'].pop('type')
-            cri_gan_cls = getattr(loss_module, gan_type)
+            cri_gan_cls = LOSSES.get(train_opt['gan_opt'].pop('type'))
             self.cri_gan = cri_gan_cls(**train_opt['gan_opt']).to(self.device)
 
         self.net_d_iters = train_opt.get('net_d_iters', 1)

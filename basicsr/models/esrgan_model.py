@@ -1,12 +1,11 @@
-import importlib
 import torch
 from collections import OrderedDict
 
+from basicsr.models import MODELS
 from basicsr.models.srgan_model import SRGANModel
 
-loss_module = importlib.import_module('basicsr.models.losses')
 
-
+@MODELS.register_module()
 class ESRGANModel(SRGANModel):
     """ESRGAN model for single image super-resolution."""
 
