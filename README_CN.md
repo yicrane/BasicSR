@@ -28,9 +28,9 @@ BasicSR 是一个基于 PyTorch 的**开源**图像视频超分辨率 (Super-Res
 
 我们提供了简单的流程来快速上手 训练/测试/推理 模型. 这些命令并不能涵盖所有用法, 更多的细节参见下面的部分.
 
-- :zap: [如何训练 StyleGAN2](docs/HOWTOs_CN.md#如何训练-StyleGAN2)
-- :zap: [如何测试 StyleGAN2](docs/HOWTOs_CN.md#如何测试-StyleGAN2)
-- :zap: [如何测试 DFDNet](docs/HOWTOs_CN.md#如何测试-DFDNet)
+- :zap: [如何训练 StyleGAN2](docs/HOWTOs_CN.md)
+- :zap: [如何测试 StyleGAN2](docs/HOWTOs_CN.md)
+- :zap: [如何测试 DFDNet](docs/HOWTOs_CN.md)
 
 ## 依赖和安装
 
@@ -81,7 +81,7 @@ python setup.py develop
 
 参见 [DesignConvention_CN.md](docs/DesignConvention_CN.md).<br>
 下图概括了整体的框架. 每个模块更多的描述参见: <br>
-**[Datasets_CN.md](docs/Datasets_CN.md)**&emsp;|&emsp;**[Models_CN.md](docs/Models_CN.md)**&emsp;|&emsp;**[Config_CN.md](Config_CN.md)**&emsp;|&emsp;**[Logging_CN.md](docs/Logging_CN.md)**
+**[Datasets_CN.md](docs/Datasets_CN.md)**&emsp;|&emsp;**[Models_CN.md](docs/Models_CN.md)**&emsp;|&emsp;**[Config_CN.md](docs/Config_CN.md)**&emsp;|&emsp;**[Logging_CN.md](docs/Logging_CN.md)**
 
 ![overall_structure](./assets/overall_structure.png)
 
