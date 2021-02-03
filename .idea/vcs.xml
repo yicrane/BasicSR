@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="T:/geotiff2png" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../KernelGAN" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../Real-SR" vcs="Git" />
   </component>
 </project>

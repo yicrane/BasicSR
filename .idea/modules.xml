@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/BasicSR.iml" filepath="$PROJECT_DIR$/.idea/BasicSR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../KernelGAN/.idea/KernelGAN.iml" filepath="$PROJECT_DIR$/../KernelGAN/.idea/KernelGAN.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Real-SR/.idea/Real-SR.iml" filepath="$PROJECT_DIR$/../Real-SR/.idea/Real-SR.iml" />
       <module fileurl="file://T:/geotiff2png/.idea/geotiff2png.iml" filepath="T:/geotiff2png/.idea/geotiff2png.iml" />
     </modules>
